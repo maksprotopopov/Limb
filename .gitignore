@@ -3,6 +3,8 @@ client/node_modules/
 client/dist-electron/
 client/dist/
 
+matrix/node_modules
+
 # Matrix Synapse data
 matrix/data/
 

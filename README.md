@@ -1,7 +1,17 @@
+# Small Overview
+
+It's a base messenger using Matrix Synapse for the communication on a localhost.
+
+If you deploy the server and change all URLs from the localhost to a domain name, you will have a possibility to search users from matrix.org domain but not vice versa.
+
+# Setting Up
+
 ## 🐳 Server (Matrix Synapse)
 
+### Make a data folder on the server
+
 ```bash
-cd ../matrix
+cd matrix
 mkdir data
 ```
 
@@ -38,7 +48,7 @@ SYNAPSE_REPORT_STATS=no
 docker-compose up -d
 ```
 
-### Stop
+### Stop (If you are done)
 
 ```bash
 docker-compose down
@@ -95,18 +105,30 @@ npm run dev
 And register first user.
 
 ### In matrix/.env after registration
+
 Put here your access_token from homeserver.db "access_tokens" table
+
 ```env
 ACCESS_TOKEN = "example"
 ```
 
+### dotenv installing in matrix/
+
+```bash
+npm install
+```
+
 ### Create First Public Room for indexation
+
+To find other users in the app, they must be indexed in a Public Room. To do this, we create an invisible room and the first user will become its creator without privileges.
 
 ```bash
 node createIndexationRoom.js
 ```
 
-### After creating room put roomId in client/.env
+### After creating the room put roomId in client/.env
+
+We are making this to index other users to the room.
 
 ```env
 VITE_PUBLIC_ROOM="!example:domain"
